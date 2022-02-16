@@ -20,6 +20,8 @@
 
             </div>
             <!-- End of Main Content -->
+            
+            @livewireScripts
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
