@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CollectPerdinController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/table', function () {
-    return view('table');
-});
-
-Route::get('/datatable', function () {
-    return view('datatable');
-});
+/* Route user */ 
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
+Route::post('/user/store', [UserController::class, 'store']);
+Route::put('/user/update/{id}', [UserController::class, 'update']);

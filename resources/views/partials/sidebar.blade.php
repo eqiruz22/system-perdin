@@ -50,16 +50,16 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="/datatable">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="/table">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+        <a class="nav-link" href="/user">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span></a>
     </li>
 
     <!-- Divider -->
