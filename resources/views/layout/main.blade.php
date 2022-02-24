@@ -106,6 +106,9 @@
     {{-- Script Delete --}}
     <script src="/js/delete-confirm.js"></script>
 
+    {{-- Script format rupiah --}}
+    <script src="/js/format.js"></script>
+
     {{-- DataTable --}}
     <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 

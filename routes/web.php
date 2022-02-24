@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CollectPerdinController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\LevelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +28,15 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 Route::post('/user/store', [UserController::class, 'store']);
 Route::put('/user/update/{id}', [UserController::class, 'update']);
+
+/* Route zone */
+Route::get('/zone', [ZoneController::class, 'index']);
+Route::get('/zone/create', [ZoneController::class, 'create']);
+
+/* Route Level */
+Route::get('/level', [LevelController::class, 'index']);
+Route::get('/level/create', [LevelController::class, 'create']);
+Route::get('/level/edit/{id}', [LevelController::class, 'edit']);
+Route::get('/level/delete/{id}', [LevelController::class, 'destroy']);
+Route::post('/level/store', [LevelController::class, 'store']);
+Route::put('/level/update/{id}', [LevelController::class, 'update']);

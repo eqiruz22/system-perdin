@@ -36,6 +36,9 @@ class CreateDataPerdinsTable extends Migration
             $table->bigInteger('fee_support_worker')->nullable();
             $table->bigInteger('atk')->nullable();
             $table->bigInteger('others')->nullable();
+            $table->bigInteger('total_cost')->nullable();
+            $table->foreign('approval_status_manager')->references('id')->on('status_perdins')->nullable();
+            $table->foreign('approval_status_director')->references('id')->on('status_perdins')->nullable();
             $table->timestamps();
         });
     }

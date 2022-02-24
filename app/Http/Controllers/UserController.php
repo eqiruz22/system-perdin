@@ -44,8 +44,8 @@ class UserController extends Controller
         }
 
         $data = [
-            'name' => $request->name,
-            'email' => $request->email,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'password' => Hash::make($request->password),
         ];
 
