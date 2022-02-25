@@ -32,6 +32,7 @@ Route::put('/user/update/{id}', [UserController::class, 'update']);
 /* Route zone */
 Route::get('/zone', [ZoneController::class, 'index']);
 Route::get('/zone/create', [ZoneController::class, 'create']);
+Route::post('/zone/store', [ZoneController::class, 'store']);
 
 /* Route Level */
 Route::get('/level', [LevelController::class, 'index']);

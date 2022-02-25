@@ -30,11 +30,24 @@
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Level</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        
+      @foreach ($data as $item)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $item->zone_name }}</td>
+              <td>{{ $item->level['name_level'] }}</td>
+              <td>
+                <div class="btn-group-sm" role="group">
+                  <a href="/zone/edit/{{ $item->id }}" class="d-flext badge badge-primary" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
+                  <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-zone" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
+              </div>
+              </td>
+            </tr>
+      @endforeach
     </tbody>
 </table>
 
