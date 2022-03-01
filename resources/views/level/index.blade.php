@@ -41,7 +41,7 @@
         @foreach ($data as $item)
             <tr>
               <td>{{ $loop->iteration }}</td>
-              <td>{{ $item->name_level }}</td>
+              <td>{{ Str::replace(['-','1','2','3'],"",$item->name_level) }}</td>
               <td>Rp {{ number_format($item->meals_allowance, 0, ",", ".") }}</td>
               <td>Rp {{ number_format($item->hardship, 0, ",", ".") }}</td>
               <td>Rp {{ number_format($item->rental_house_allowance, 0, ",", ".") }}</td>
@@ -49,7 +49,7 @@
               <td>
                 <div class="btn-group-sm" role="group">
                   <a href="/level/edit/{{ $item->id }}" class="d-flext badge badge-primary" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
-                  <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-level" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
+                  <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-zone" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
               </div>
               </td>
             </tr>
@@ -57,5 +57,6 @@
     </tbody>
 </table>
 
+{{ $data->links() }}
 
 @endsection

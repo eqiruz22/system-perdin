@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Level;
 use App\Models\Zone;
 use Illuminate\Support\Facades\DB;
@@ -59,5 +58,41 @@ class ZoneController extends Controller
             'data' => $data,
             'level' => $level
         ]);
+    }
+
+    public function update(Request $request, Zone $id)
+    {
+        $rule = [
+            'zone_name' => 'required',
+        ];
+
+        if($request->level_id != $id->level_id){
+            $rule['level_id'] = 'required|unique:zones';
+        }
+
+        $rules = Validator::make($request->all(),$rule,[
+            'zone_name.required' => 'Zone is required',
+            'level_id.required' => 'Level is required',
+            'level_id.unique' => 'Level is already exist'
+        ]);
+
+        if($rules->fails()){
+            return redirect()->back()->withErrors($rules->errors());
+        }
+
+        $data = [
+            'zone_name' => $request->input('zone_name'),
+            'level_id' => $request->input('level_id')
+        ];
+
+        DB::table('zones')->where('id',$id->id)->update($data);
+        return redirect('/zone')->with('success','Zone has been updated');
+    }
+
+    public function destroy($id)
+    {
+        $data = Zone::findOrFail($id);
+        $data->delete();
+        return redirect('/zone');
     }
 }

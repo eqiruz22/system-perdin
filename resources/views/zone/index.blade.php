@@ -38,8 +38,8 @@
       @foreach ($data as $item)
             <tr>
               <td>{{ $loop->iteration }}</td>
-              <td>{{ $item->zone_name }}</td>
-              <td>{{ $item->level['name_level'] }}</td>
+              <td>{{ Str::replace(['-','Manager','Supervisor','Officer','Sr. Staff','Jr. Staff','Superintendant','Jr. staff','Suervisor'],"",$item->zone_name) }}</td>
+              <td>{{ Str::replace(['1','-'],"",$item->level['name_level']) }}</td>
               <td>
                 <div class="btn-group-sm" role="group">
                   <a href="/zone/edit/{{ $item->id }}" class="d-flext badge badge-primary" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
@@ -51,5 +51,6 @@
     </tbody>
 </table>
 
+{{ $data->links() }}
 
 @endsection
