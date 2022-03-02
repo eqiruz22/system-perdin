@@ -34,11 +34,20 @@
             <span>Charts</span></a>
     </li>
 
-    <!-- Nav Item - users -->
+
+    {{-- Nav item - User --}}
     <li class="nav-item">
-        <a class="nav-link" href="/user">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+            aria-expanded="true" aria-controls="collapseUser">
             <i class="fas fa-fw fa-user"></i>
-            <span>Users</span></a>
+            <span>User</span>
+        </a>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/user">user</a>
+                <a class="collapse-item" href="/user-project">user project</a>
+            </div>
+        </div>
     </li>
 
     {{-- Nav item - zone & levels --}}

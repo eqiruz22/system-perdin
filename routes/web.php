@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CollectPerdinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\UserProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +44,11 @@ Route::get('/level/edit/{id}', [LevelController::class, 'edit']);
 Route::get('/level/delete/{id}', [LevelController::class, 'destroy']);
 Route::post('/level/store', [LevelController::class, 'store']);
 Route::put('/level/update/{id}', [LevelController::class, 'update']);
+
+/* Route User Project */
+Route::get('/user-project', [UserProjectController::class, 'index']);
+Route::get('/user-project/create', [UserProjectController::class, 'create']);
+Route::get('/user-project/edit/{id}', [UserProjectController::class, 'edit']);
+Route::get('/user-project/delete/{id}', [UserProjectController::class, 'destroy']);
+Route::post('/user-project/store', [UserProjectController::class, 'store']);
+Route::put('/user-project/update/{id:id}', [UserProjectController::class, 'update']);
