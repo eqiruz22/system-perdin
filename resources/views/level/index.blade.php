@@ -13,102 +13,11 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Level List</h1>
-    <a href="#" data-toggle="modal" data-target="#levelCreate" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
+    <a href="/level/create" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
     class="fas fa-plus fa-sm text-white-50"></i> Create Level</a>
 </div>
 
-<!-- Create Level-->
-<div class="modal fade" id="levelCreate" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Level</h5>
-                <button class="close" type="button" data-dismiss="modal">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="/level/store" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                            <label for="validationDefault04">State</label>
-                            <select name="zone_id" class="custom-select @error('zone_id') is-invalid @enderror" id="validationDefault04" required>
-                              <option selected disabled value="">Choose...</option>
-                              @foreach ($zone as $item)
-                                  <option value="{{$item->id}}">{{$item->name}}</option>
-                              @endforeach
-                            </select>
-                            @error('zone_id')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Name Level</label>
-                        <input type="text" name="name_level" class="form-control @error('name_level') is-invalid @enderror" value="{{ old('name_level') }}" required>
-                        @error('name_level')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Meals Allowance</label>
-                        <input type="text" id="meals_allowance" name="meals_allowance" class="form-control @error('meals_allowance') is-invalid @enderror" value="{{ old('meals_allowance') }}" required>
-                        @error('meals_allowance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Hardship</label>
-                        <input type="text" id="hardship" name="hardship" class="form-control @error('hardship') is-invalid @enderror" value="{{ old('hardship') }}" required>
-                        @error('hardship')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Rental House Allowance</label>
-                        <input type="text" id="rental_house_allowance" name="rental_house_allowance" class="form-control @error('rental_house_allowance') is-invalid @enderror" value="{{ old('rental_house_allowance') }}" required>
-                        @error('rental_house_allowance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Pulsa Allowance</label>
-                        <input type="text" id="pulsa_allowance" name="pulsa_allowance" class="form-control @error('pulsa_allowance') is-invalid @enderror" value="{{ old('pulsa_allowance') }}" required>
-                        @error('pulsa_allowance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Hardship Allowance</label>
-                        <input type="text" id="hardship_allowance" name="hardship_allowance" class="form-control @error('hardship_allowance') is-invalid @enderror" value="{{ old('hardship_allowance') }}" required>
-                        @error('hardship_allowance')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<table class="table">
+<table class="table table-responsive">
     <thead>
         <tr>
             <th>No</th>
@@ -126,16 +35,18 @@
         @foreach ($level as $item)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$item->name_level}}</td>
-            <td></td>
-            <td>{{$item->meals_allowance}}</td>
-            <td>{{$item->hardship}}</td>
-            <td>{{$item->rental_house_allowance}}</td>
-            <td>{{$item->pulsa_allowance}}</td>
-            <td>{{$item->hardship_allowance}}</td>
+            <td>{{ $item->name_level }}</td>
+            <td>{{ $item->zone['name'] }}</td>
+            <td>{{ number_format($item->meals_allowance,2,',','.') }}</td>
+            <td>{{ number_format($item->hardship,2,',','.') }}</td>
+            <td>{{ number_format($item->rental_house_allowance,2,',','.') }}</td>
+            <td>{{ number_format($item->pulsa_allowance,2,',','.') }}</td>
+            <td>{{ number_format($item->hardship_allowance,2,',','.') }}</td>
             <td>
-                <a href="#" data-toggle="modal" data-target="#levelEdit{{$item->id}}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                <a href="#" data-toggle="modal" data-target="#levelDelete{{$item->id}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                <div class="btn-group-sm" role="group">
+                    <a href="/level/edit/{{ $item->id    }}" class="d-flext badge badge-primary edit-zone" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
+                    <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-level" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
+                </div>
             </td>
         </tr>
         @endforeach
@@ -144,11 +55,3 @@
 
 @endsection
 
-@section('script')
-    <script type="text/javascript">
-        $('#levelCreate').click(function(){
-            $('#levelCreate').modal('show');
-        });
-    </script>
-
-@stop

@@ -19,4 +19,9 @@ class Level extends Model
         'hardship_allowance',
         'zone_id',
     ];
+
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class, 'zone_id');
+    }
 }

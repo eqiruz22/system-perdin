@@ -35,4 +35,8 @@ Route::post('/zone/store', [ZoneController::class, 'store']);
 Route::post('/zone/update/{id}', [ZoneController::class, 'update']);
 
 Route::get('/level', [LevelController::class, 'index']);
-Route::post('/level/store', [LevelController::class, 'store']);
+Route::get('/level/create', [LevelController::class, 'create']);
+Route::get('/level/edit/{id}', [LevelController::class, 'edit'])->name('level.edit');
+Route::get('/level/delete/{id}', [LevelController::class, 'destroy']);
+Route::post('/level/store', [LevelController::class, 'store'])->name('level.store');
+Route::put('/level/update/{id}', [LevelController::class, 'update'])->name('level.update');
