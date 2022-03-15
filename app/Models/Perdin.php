@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Level;
 
-class Zone extends Model
+class Perdin extends Model
 {
     use HasFactory;
 
-    protected $table = 'zones';
-    protected $fillable = ['name'];
-
+    protected $table = 'perdins';
+    protected $guarded = ['id'];
 }

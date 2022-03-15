@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLevelIdToZones extends Migration
+class CreateZonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddLevelIdToZones extends Migration
      */
     public function up()
     {
-        Schema::table('zones', function (Blueprint $table) {
-            $table->unsignedBigInteger('level_id')->nullable();
-            $table->foreign('level_id')->references('id')->on('levels');
+        Schema::create('zones', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50)->unique();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class AddLevelIdToZones extends Migration
      */
     public function down()
     {
-        Schema::table('zones', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('zones');
     }
 }

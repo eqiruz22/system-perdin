@@ -10,5 +10,13 @@ class Level extends Model
     use HasFactory;
 
     protected $table = 'levels';
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name_level',
+        'meals_allowance',
+        'hardship',
+        'rental_house_allowance',
+        'pulsa_allowance',
+        'hardship_allowance',
+        'zone_id',
+    ];
 }

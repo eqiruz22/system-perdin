@@ -19,7 +19,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- Custom styles for this page -->
     
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     
@@ -95,6 +94,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -108,11 +108,7 @@
 
     {{-- Script format rupiah --}}
     <script src="/js/format.js"></script>
-
-    {{-- DataTable --}}
-    <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-
-
+    @yield('scripts')
 </body>
 
 </html>

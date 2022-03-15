@@ -2,12 +2,6 @@
 
 @section('content')
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Zone List</h1>
-    <a href="/zone/create" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
-    class="fas fa-plus fa-sm text-white-50"></i> Created Zone</a>
-</div>
-
 <div class="mb-2 mt-2">
     @if (session('success'))
     <div class="alert alert-success">
@@ -15,42 +9,126 @@
     </div>
     @endif
 </div>
-<form action="/table">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search..." autocomplete="off" name="search" value="{{ request('search') }}">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Zone List</h1>
+    <a href="#" data-toggle="modal" data-target="#zoneModal" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
+    class="fas fa-plus fa-sm text-white-50"></i> Create Zone</a>
+</div>
+
+<!-- Create Zone Modal-->
+<div class="modal fade" id="zoneModal" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Zone</h5>
+            <button class="close" type="button" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form action="/zone/store" method="POST">
+            @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="zone_name">Name Zone</label>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
     </div>
-  </form>
-<table class="table table-borderless">
+</div>
+</div>
+
+<!-- update Zone Modal-->
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Zone</h5>
+                <button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+           <div class="modal-data">
+
+           </div>
+        </div>
+    </div>
+    </div>
+
+<table class="table">
     <thead>
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Level</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-      @foreach ($data as $item)
+        @foreach ($data as $item)
             <tr>
-              <td>{{ $loop->iteration }}</td>
-              <td>{{ Str::replace(['-','Manager','Supervisor','Officer','Sr. Staff','Jr. Staff','Superintendant','Jr. staff','Suervisor'],"",$item->zone_name) }}</td>
-              <td>{{ Str::replace(['1','-'],"",$item->level['name_level']) }}</td>
-              <td>
-                <div class="btn-group-sm" role="group">
-                  <a href="/zone/edit/{{ $item->id }}" class="d-flext badge badge-primary" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
-                  <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-zone" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
-              </div>
-              </td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->name }}</td>
+                <td>
+                    <div class="btn-group-sm" role="group">
+                        <a href="#" data-toggle="modal" data-target="#edit-modal" data-id="{{ $item->id }}" class="d-flext badge badge-primary edit-zone" style="background-color: darkgray; color:black"><i class="fas fa-edit"></i> Edit</a>                
+                        <a href="#" data-id="{{ $item->id }}" class="d-flext badge badge-danger border-0 delete-zone" style="color: black; background-color: darkgray"><i class="fas fa-trash"></i> Delete</a>
+                    </div>
+                </td>
             </tr>
-      @endforeach
+        @endforeach
     </tbody>
 </table>
 
-{{ $data->links() }}
-
 @endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $('#zoneModal').click(function(){
+            $('#zoneModal').modal('show');
+        });
+
+        $('.edit-zone').click(function(){
+            var id = $(this).data('id');
+            $.ajax({
+                url: `/zone/edit/${id}`,
+                method: 'GET',
+                success: function(data){
+                    $('#edit-modal').find('.modal-data').html(data);
+                    $('#edit-modal').modal('show');
+                },
+                errors: function(data){
+                    console.log(data);
+                }
+            });
+        });
+
+        $('.update-zone').click(function(){
+           var id = $('#form-edit').find('input[name="id"]').val();
+           var name = $('#form-edit').find('input[name="name"]').val();
+              $.ajax({
+                 url: `/zone/update/${id}`,
+                 method: 'POST',
+                 data: {
+                      name: name
+                 },
+                 success: function(data){
+                        console.log(data);
+                        location.reload();
+                 },
+                 errors: function(data){
+                      console.log(data);
+                 }
+               });
+        });
+    </script>
+@stop

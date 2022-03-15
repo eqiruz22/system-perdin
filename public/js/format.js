@@ -1,6 +1,6 @@
-var meals = document.getElementById('meals');
-meals.addEventListener('keyup', function (e) {
-    meals.value = formatRupiah(this.value, '');
+var meals_allowance = document.getElementById('meals_allowance');
+meals_allowance.addEventListener('keyup', function (e) {
+    meals_allowance.value = formatRupiah(this.value, '');
 });
 
 var hardship = document.getElementById('hardship');
@@ -8,19 +8,19 @@ hardship.addEventListener('keyup', function (e) {
     hardship.value = formatRupiah(this.value, '');
 });
 
-var rental = document.getElementById('rental');
-rental.addEventListener('keyup', function (e) {
-    rental.value = formatRupiah(this.value, '');
+var rental_house_allowance = document.getElementById('rental_house_allowance');
+rental_house_allowance.addEventListener('keyup', function (e) {
+    rental_house_allowance.value = formatRupiah(this.value, '');
 });
 
-var pulsa = document.getElementById('pulsa');
-pulsa.addEventListener('keyup', function (e) {
-    pulsa.value = formatRupiah(this.value, '');
+var pulsa_allowance = document.getElementById('pulsa_allowance');
+pulsa_allowance.addEventListener('keyup', function (e) {
+    pulsa_allowance.value = formatRupiah(this.value, '');
 });
 
-var hardallowance = document.getElementById('hardallowance');
-hardallowance.addEventListener('keyup', function (e) {
-    hardallowance.value = formatRupiah(this.value, '');
+var hardship_allowance = document.getElementById('hardship_allowance');
+hardship_allowance.addEventListener('keyup', function (e) {
+    hardship_allowance.value = formatRupiah(this.value, '');
 });
 
 function formatRupiah(number, prefix) {

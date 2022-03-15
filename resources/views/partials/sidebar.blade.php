@@ -65,6 +65,21 @@
         </div>
     </li>
 
+    {{-- Nav item - User --}}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerdin"
+            aria-expanded="true" aria-controls="collapseUser">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Perdin</span>
+        </a>
+        <div id="collapsePerdin" class="collapse" aria-labelledby="headingPerdin" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/perdin-project">by project</a>
+                <a class="collapse-item" href="#">by mkn</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
